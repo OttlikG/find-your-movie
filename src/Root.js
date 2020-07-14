@@ -6,24 +6,23 @@ import { Provider } from 'react-redux'
 // give your app more flexibility on deeper integration of `history`
 import { Router } from 'react-router-dom'
 
+import Routes from './routes'
+
 export default class Root extends React.PureComponent {
-  get content() {
-    const { routes, history } = this.props
-
-    return <Router history={history}>{routes}</Router>
-  }
-
   render() {
-    const { store } = this.props
+    const { store, history } = this.props
 
     return (
-        <Provider store={store}>{this.content}</Provider>
+        <Provider store={store}>
+          <Router history={history}>
+            <Routes />
+          </Router>
+        </Provider>
     )
   }
 }
 
 Root.propTypes = {
   history: PropTypes.object.isRequired,
-  routes: PropTypes.element.isRequired,
   store: PropTypes.object.isRequired,
 }

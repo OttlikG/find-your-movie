@@ -1,9 +1,7 @@
 import React from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
 
-function Search() {
-    return <div>Search</div>
-}
+import Search from './container/Search'
 
 export default function Routes() {
     return (
