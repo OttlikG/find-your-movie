@@ -1,24 +1,45 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { Input, Button } from 'antd'
+import { connect } from 'react-redux'
+
+import { fetchMovies } from '../redux/reducers/movie'
 
 import './search.scss'
 
 const { Search } = Input
 
 
-export default class SearchContainer extends Component {
-    render() {
-        return (
-            <div className="search-container">
-                <Search
-                    placeholder="input search text"
-                    onSearch={value => console.log(value)}
-                    style={{ width: 400 }}
-                />
-                <Button className='search-button' type="primary" size="big">
-                    Loading
-                </Button>
-            </div>
-        )
-    }
-} 
+function SearchContainer(props) {
+    const { fetchMovies } = props
+    const [searchTerm, setSearchTerm] = useState('')
+
+    return (
+        <div className="search-container">
+            <Search
+                placeholder="Search movies"
+                onChange={event => setSearchTerm(event.target.value)}
+                style={{ width: 400 }}
+            />
+            <Button
+                className='search-button'
+                type="primary"
+                size="big"
+                onClick={() => fetchMovies(searchTerm)}
+            >
+                Loading
+            </Button>
+        </div>
+    )
+}
+
+const mapStateToProps = (state) => {
+    return ({
+        movie: state.movie
+    })
+}
+
+const mapDispatchToProps = {
+    fetchMovies
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer)
