@@ -16,9 +16,9 @@ function SearchContainer(props) {
     return (
         <div className="search-container">
             <Search
+                className="search-bar"
                 placeholder="Search movies"
                 onChange={event => setSearchTerm(event.target.value)}
-                style={{ width: 400 }}
             />
             <Button
                 className='search-button'
