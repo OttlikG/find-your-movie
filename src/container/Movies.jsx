@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Input } from 'antd'
+import { Input, Row, Col } from 'antd'
 
 import { fetchMovies } from '../redux/reducers/movie'
+import MovieCard from '../component/movie-card/MovieCard'
 import './movies.scss'
 
 const { Search } = Input
@@ -10,6 +11,7 @@ const { Search } = Input
 function Movies(props) {
     const {
         location,
+        movies,
         fetchMovies
     } = props
 
@@ -26,14 +28,25 @@ function Movies(props) {
                 />
             </div>
             <div className="result">
-
+            <Row>
+                <Col span={20} offset={2}>
+                    {movies.map(movie =>
+                        <MovieCard
+                            key={movie.id}
+                            imageId={movie.poster_path}
+                            title={movie.title}
+                            description={movie.overview}
+                        />
+                    )}
+                </Col>
+            </Row>
             </div>
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-    movie: state.movie
+    movies: state.movie.movies
 })
 
 const mapDispatchToProps = {
