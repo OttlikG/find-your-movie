@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux'
+import { connectRouter } from 'connected-react-router'
+
 import movie from './reducers/movie'
 
 
-export default combineReducers({
+export default (history) => combineReducers({
+  router: connectRouter(history),
   movie,
 })

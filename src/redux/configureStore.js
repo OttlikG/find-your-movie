@@ -20,7 +20,7 @@ export default function configureStore(initialState, history) { // eslint-disabl
     reduxDevTool()
   )
 
-  const store = composedStoreEnhancer(createStore)(rootReducer, initialState)
+  const store = composedStoreEnhancer(createStore)(rootReducer(history), initialState)
 
   if (module.hot) {
     module.hot.accept('./rootReducers', () => {

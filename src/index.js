@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 'antd/dist/antd.css';
+import { createBrowserHistory } from 'history';
 
 import Root from './Root'
 import configureStore from './redux/configureStore'
-import { history } from './app-history'
+import 'antd/dist/antd.css';
 
+const history = createBrowserHistory();
 const store = configureStore(window.__INITIAL_STATE__, history)
 
 // Render the React application to the DOM
