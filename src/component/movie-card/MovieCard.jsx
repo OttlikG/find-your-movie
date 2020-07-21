@@ -10,7 +10,7 @@ export default function MovieCard(props) {
     const movieUrl = `https://image.tmdb.org/t/p/w300${imageId}`
 
     return (
-        <Col sm={12} md={8}>
+        <Col sm={12} md={8} lg={4}>
             <div className="card-wrapper">
                 <Card
                     hoverable
