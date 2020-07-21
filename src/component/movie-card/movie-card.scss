@@ -2,3 +2,8 @@
 .card-wrapper {
     margin-bottom: 30px;
 }
+
+.ant-card-body {
+    max-height: 300px;
+    overflow: hidden;
+}
