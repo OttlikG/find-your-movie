@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
-import { ConnectedRouter } from 'connected-react-router'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import Routes from './routes'
 
@@ -11,9 +11,9 @@ export default class Root extends React.PureComponent {
 
     return (
         <Provider store={store}>
-          <ConnectedRouter history={history}>
+          <Router>
             <Routes />
-          </ConnectedRouter>
+          </Router>
         </Provider>
     )
   }

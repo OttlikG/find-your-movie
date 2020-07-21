@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Input, Button } from 'antd'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { fetchMovies } from '../redux/reducers/movie'
 
@@ -20,14 +21,16 @@ function SearchContainer(props) {
                 placeholder="Search movies"
                 onChange={event => setSearchTerm(event.target.value)}
             />
-            <Button
-                className='search-button'
-                type="primary"
-                size="big"
-                onClick={() => fetchMovies(searchTerm)}
-            >
-                Loading
-            </Button>
+            <Link to="/movies">
+                <Button
+                    className='search-button'
+                    type="primary"
+                    size="big"
+                    onClick={() => fetchMovies(searchTerm)}
+                >
+                    Loading
+                </Button>
+            </Link>
         </div>
     )
 }

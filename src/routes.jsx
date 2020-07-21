@@ -6,13 +6,9 @@ import Movies from './container/Movies'
 
 export default function Routes() {
     return (
-        <div>
-            <div>
-                <Switch>
-                    <Route exact path="/" component={Search} />
-                    <Route exact path="/movies" component={Movies} />
-                </Switch>
-            </div>
-        </div>
+        <Switch>
+            <Route exact path="/" component={Search} />
+            <Route exact path="/movies" component={Movies} />
+        </Switch>
     )
 }

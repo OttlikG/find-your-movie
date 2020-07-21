@@ -1,5 +1,6 @@
 import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk';
+
 import rootReducer from './rootReducers'
 
 // Redux DevTools Extension for Chrome and Firefox
@@ -20,7 +21,7 @@ export default function configureStore(initialState, history) { // eslint-disabl
     reduxDevTool()
   )
 
-  const store = composedStoreEnhancer(createStore)(rootReducer(history), initialState)
+  const store = createStore(rootReducer, initialState, composedStoreEnhancer)
 
   if (module.hot) {
     module.hot.accept('./rootReducers', () => {
