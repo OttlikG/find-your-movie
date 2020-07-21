@@ -15,8 +15,6 @@ function Movies(props) {
         fetchMovies
     } = props
 
-    console.log('-- location', location)
-
     return (
         <div className='movies-container'>
             <div className='search-bar'>
@@ -30,14 +28,16 @@ function Movies(props) {
             <div className="result">
             <Row>
                 <Col span={20} offset={2}>
-                    {movies.map(movie =>
-                        <MovieCard
-                            key={movie.id}
-                            imageId={movie.poster_path}
-                            title={movie.title}
-                            description={movie.overview}
-                        />
-                    )}
+                    <Row gutter={16}>
+                        {movies.map(movie =>
+                            <MovieCard
+                                key={movie.id}
+                                imageId={movie.poster_path}
+                                title={movie.title}
+                                description={movie.overview}
+                            />
+                        )}
+                    </Row>
                 </Col>
             </Row>
             </div>
