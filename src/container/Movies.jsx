@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Input, Row, Col, message } from 'antd'
 
-import { fetchMovies, resetMoviesError } from '../redux/reducers/movie'
+import { fetchMovies, resetMoviesError, fetchDetails } from '../redux/reducers/movie'
 import MovieCard from '../component/movie-card/MovieCard'
 import './movies.scss'
-import { render } from '@testing-library/react'
 
 const { Search } = Input
 
@@ -29,7 +28,8 @@ class Movies extends Component {
             movies,
             error,
             fetchMovies,
-            resetMoviesError
+            resetMoviesError,
+            fetchDetails
         } = this.props
 
         const { hasError } = this.state
@@ -54,9 +54,11 @@ class Movies extends Component {
                                 {movies.map(movie =>
                                     <MovieCard
                                         key={movie.id}
+                                        movieId={movie.id}
                                         imageId={movie.poster_path}
                                         title={movie.title}
                                         description={movie.overview}
+                                        fetchDetails={fetchDetails}
                                     />
                                 )}
                             </Row>
@@ -76,7 +78,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     fetchMovies,
-    resetMoviesError
+    resetMoviesError,
+    fetchDetails
 }
 
 export default connect(
