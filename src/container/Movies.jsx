@@ -27,6 +27,7 @@ class Movies extends Component {
         const {
             movies,
             error,
+            movieDetails,
             fetchMovies,
             resetMoviesError,
             fetchDetails
@@ -55,6 +56,7 @@ class Movies extends Component {
                                     <MovieCard
                                         key={movie.id}
                                         movieId={movie.id}
+                                        deailts={movieDetails && movieDetails[movie.id]}
                                         imageId={movie.poster_path}
                                         title={movie.title}
                                         description={movie.overview}
@@ -73,6 +75,7 @@ class Movies extends Component {
 
 const mapStateToProps = (state) => ({
     movies: state.movie.movies,
+    movieDetails: state.movie.movieDetails,
     error: state.movie.error
 })
 

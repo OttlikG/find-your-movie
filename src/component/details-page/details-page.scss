@@ -15,3 +15,20 @@
     bottom: 60px;
     background-color: rgb(255, 255, 255);
 }
+
+.back-button {
+    font-size: 30px;
+    position: relative;
+    top: 20px;
+    left: 30px;
+    cursor: pointer;
+}
+
+.cross-button {
+    font-size: 30px;
+    float: right;
+    position: relative;
+    top: 25px;
+    right: 30px;
+    cursor: pointer;
+}
