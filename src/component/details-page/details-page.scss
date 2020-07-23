@@ -72,6 +72,16 @@
     margin-top: 30px;
 }
 
+.details-content-description {
+    flex-grow: 1;
+}
+
+.details-skeleton {
+    flex-flow: column;
+    width: 100%;
+    padding-right: 20px;
+}
+
 @media (min-width: 767px) {
     .details-content-wrapper {
         flex-direction: row;
