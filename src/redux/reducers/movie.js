@@ -1,4 +1,4 @@
-
+import { createSelector } from 'reselect'
 
 const initialState = {
     movies: [],
@@ -7,11 +7,15 @@ const initialState = {
     isLoading: false
 }
 
+// CONSTANTS
+
 const SET_MOVIES = 'movie/SET_MOVIES'
 const SET_MOVIES_ERROR = 'movie/SET_MOVIES_ERROR'
 const SET_MOVIE_DETAILS = 'movie/SET_MOVIE_DETAILS'
 const RESET_MOVIES_ERROR = 'movie/RESET_MOVIES_ERROR'
 const IS_LOADING = 'movie/IS_LOADING'
+
+// REDUCER
 
 export default function (state = initialState, action) {
     switch(action.type) {
@@ -53,6 +57,8 @@ export default function (state = initialState, action) {
     }
 }
 
+// ACTION CREATORS
+
 const setMovies = (movies) => ({
     type: SET_MOVIES,
     payload: movies
@@ -79,6 +85,8 @@ const setIsLoading = (isLoading) => ({
 export const resetMoviesError = () => ({
     type: RESET_MOVIES_ERROR
 })
+
+// ASYNC ACTIONS
 
 export const fetchMovies = (searchTerm) => async (dispatch) => {
     const apiKey = process.env.REACT_APP_TMDB_API_KEY
@@ -113,3 +121,12 @@ export const fetchDetails = movieId => async dispatch => {
         dispatch(setMoviesError(e))
     }
 }
+
+// SELECTORS
+
+const movieSelector = state => state.movie
+
+export const moviesSelector = createSelector(movieSelector, ({ movies }) => {
+    return movies.filter(movie => movie.poster_path)
+})
+

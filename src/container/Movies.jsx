@@ -2,7 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Input, Row, Col, Empty, message } from 'antd'
 
-import { fetchMovies, resetMoviesError, fetchDetails } from '../redux/reducers/movie'
+import {
+    fetchMovies,
+    resetMoviesError,
+    fetchDetails,
+    moviesSelector
+} from '../redux/reducers/movie'
 import MovieCard from '../component/movie-card/MovieCard'
 import './movies.scss'
 
@@ -91,7 +96,7 @@ class Movies extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    movies: state.movie.movies,
+    movies: moviesSelector(state),
     movieDetails: state.movie.movieDetails,
     error: state.movie.error,
     isLoading: state.movie.isLoading
