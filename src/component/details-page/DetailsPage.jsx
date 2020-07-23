@@ -1,10 +1,14 @@
 import React from 'react'
 import { LeftOutlined, CloseOutlined } from '@ant-design/icons'
+import { Typography } from 'antd';
 
 import './details-page.scss'
 
+const { Title } = Typography;
+
 export default function DetailsPage(props) {
-    const { onClose } = props
+    const { onClose, details } = props
+    const { original_title, release_date, vote_average, overview } = details
     console.log('-- onClose', onClose)
 
     return (
@@ -18,8 +22,12 @@ export default function DetailsPage(props) {
                         <CloseOutlined onClick={() => onClose(false)}/>
                     </span>
                 </div>
-                <div className></div>
-                Test
+                <div className="details-content">
+                    <Title>{ original_title }</Title>
+                    <Title level={2}>{ release_date }</Title>
+                    <Title level={2}>{ vote_average }</Title>
+                    <div className="details-description">{ overview}</div>
+                </div>
             </div>
         </div>
     )

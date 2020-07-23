@@ -10,10 +10,8 @@ const { Meta } = Card
 
 export default function MovieCard(props) {
     const [detailsPageIsOpen, setDetailsPageIsOpen] = useState(false)
-    const { movieId, imageId, title, description, deailts, fetchDetails } = props
+    const { movieId, imageId, title, description, details = {}, fetchDetails } = props
     const movieUrl = `https://image.tmdb.org/t/p/w300${imageId}`
-
-    console.log('-- deailts', deailts)
 
     useEffect(() => {
         const body = document.getElementsByTagName('body')[0]
@@ -44,7 +42,7 @@ export default function MovieCard(props) {
             </Col>
 
             { detailsPageIsOpen && <Modal>
-                <DetailsPage onClose={setDetailsPageIsOpen} />
+                <DetailsPage details={details} onClose={setDetailsPageIsOpen} />
             </Modal> }
         </>
     )

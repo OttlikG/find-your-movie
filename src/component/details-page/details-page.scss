@@ -1,5 +1,5 @@
 .detials-page-overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
@@ -9,11 +9,18 @@
 
 .details-page-wrapper {
     position: absolute;
-    top: 60px;
-    left: 60px;
-    right: 60px;
-    bottom: 60px;
-    background-color: rgb(255, 255, 255);
+    margin: 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+}
+
+@media (min-width: 768px) {
+    .details-page-wrapper {
+        margin: 150px;
+    }
 }
 
 .back-button {
@@ -31,4 +38,13 @@
     top: 25px;
     right: 30px;
     cursor: pointer;
+}
+
+.details-content {
+    margin: 40px;
+}
+
+.details-description {
+    overflow: auto;
+    min-height: 100px;
 }

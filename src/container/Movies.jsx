@@ -56,7 +56,7 @@ class Movies extends Component {
                                     <MovieCard
                                         key={movie.id}
                                         movieId={movie.id}
-                                        deailts={movieDetails && movieDetails[movie.id]}
+                                        details={movieDetails && movieDetails[movie.id]}
                                         imageId={movie.poster_path}
                                         title={movie.title}
                                         description={movie.overview}
