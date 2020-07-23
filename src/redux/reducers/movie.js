@@ -2,13 +2,16 @@
 
 const initialState = {
     movies: [],
-    error: false
+    movieDetails: {},
+    error: false,
+    isLoading: false
 }
 
 const SET_MOVIES = 'movie/SET_MOVIES'
 const SET_MOVIES_ERROR = 'movie/SET_MOVIES_ERROR'
 const SET_MOVIE_DETAILS = 'movie/SET_MOVIE_DETAILS'
 const RESET_MOVIES_ERROR = 'movie/RESET_MOVIES_ERROR'
+const IS_LOADING = 'movie/IS_LOADING'
 
 export default function (state = initialState, action) {
     switch(action.type) {
@@ -38,6 +41,12 @@ export default function (state = initialState, action) {
                 }
             }
         }
+        case IS_LOADING: {
+            return {
+                ...state,
+                isLoading: action.payload
+            }
+        }
 
         default:
             return state
@@ -62,6 +71,11 @@ const setMovieDetails = (id, details) => ({
     }
 })
 
+const setIsLoading = (isLoading) => ({
+    type: IS_LOADING,
+    payload: isLoading
+})
+
 export const resetMoviesError = () => ({
     type: RESET_MOVIES_ERROR
 })
@@ -70,11 +84,14 @@ export const fetchMovies = (searchTerm) => async (dispatch) => {
     const apiKey = process.env.REACT_APP_TMDB_API_KEY
     const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchTerm}`
 
+    dispatch(setIsLoading(true))
+
     try {
         const response = await fetch(url)
         const data = await response.json()
 
         dispatch(setMovies(data.results))
+        dispatch(setIsLoading(false))
     } catch (e) {
         dispatch(setMoviesError(e))
     }
@@ -84,11 +101,14 @@ export const fetchDetails = movieId => async dispatch => {
     const apiKey = process.env.REACT_APP_TMDB_API_KEY
     const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`
 
+    dispatch(setIsLoading(true))
+
     try {
         const response = await fetch(url)
         const data = await response.json()
 
         dispatch(setMovieDetails(movieId, data))
+        dispatch(setIsLoading(false))
     } catch (e) {
         dispatch(setMoviesError(e))
     }

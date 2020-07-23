@@ -11,8 +11,12 @@ const { Search } = Input
 
 
 function SearchContainer(props) {
-    const { fetchMovies } = props
+    const { isLoading, movies, fetchMovies, history } = props
     const [searchTerm, setSearchTerm] = useState('')
+
+    if (movies.length) {
+        history.push('/movies')
+    }
 
     return (
         <div className="search-container">
@@ -20,24 +24,24 @@ function SearchContainer(props) {
                 className="search-bar"
                 placeholder="Search movies"
                 onChange={event => setSearchTerm(event.target.value)}
+                loading={isLoading}
             />
-            <Link to="/movies">
-                <Button
-                    className='search-button'
-                    type="primary"
-                    size="big"
-                    onClick={() => fetchMovies(searchTerm)}
-                >
-                    Loading
-                </Button>
-            </Link>
+            <Button
+                className='search-button'
+                type="primary"
+                size="big"
+                onClick={() => fetchMovies(searchTerm)}
+            >
+                Loading
+            </Button>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return ({
-        movie: state.movie
+        isLoading: state.movie.isLoading,
+        movies: state.movie.movies
     })
 }
 
