@@ -8,6 +8,8 @@
     overflow: hidden;
 }
 
-.ant-card-cover img {
-    max-height: 245px;
+@media (min-width: 768px) {
+    .ant-card-cover img {
+        max-height: 245px;
+    }
 }
