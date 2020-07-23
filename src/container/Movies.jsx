@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Input, Row, Col, message } from 'antd'
+import { Input, Row, Col, Empty, message } from 'antd'
 
 import { fetchMovies, resetMoviesError, fetchDetails } from '../redux/reducers/movie'
 import MovieCard from '../component/movie-card/MovieCard'
@@ -23,15 +23,40 @@ class Movies extends Component {
         return { hasError: true };
     }
 
-    render() {
+    renderMovies() {
         const {
             movies,
+            movieDetails,
+            fetchDetails
+        } = this.props
+
+        if (movies.length) {
+            return movies.map(movie =>
+                <MovieCard
+                    key={movie.id}
+                    movieId={movie.id}
+                    details={movieDetails && movieDetails[movie.id]}
+                    imageId={movie.poster_path}
+                    title={movie.title}
+                    description={movie.overview}
+                    fetchDetails={fetchDetails}
+                />
+            )
+        }
+
+        return (
+            <div className="empty-container">
+                <Empty />
+            </div>
+        )
+    }
+
+    render() {
+        const {
             error,
             isLoading,
-            movieDetails,
             fetchMovies,
-            resetMoviesError,
-            fetchDetails
+            resetMoviesError
         } = this.props
 
         const { hasError } = this.state
@@ -54,17 +79,7 @@ class Movies extends Component {
                     <Row>
                         <Col span={20} offset={2}>
                             <Row gutter={16}>
-                                {movies.map(movie =>
-                                    <MovieCard
-                                        key={movie.id}
-                                        movieId={movie.id}
-                                        details={movieDetails && movieDetails[movie.id]}
-                                        imageId={movie.poster_path}
-                                        title={movie.title}
-                                        description={movie.overview}
-                                        fetchDetails={fetchDetails}
-                                    />
-                                )}
+                                { this.renderMovies() }
                             </Row>
                         </Col>
                     </Row>

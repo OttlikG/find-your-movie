@@ -3,4 +3,12 @@
     .search-bar {
         margin: 20px;
     }
+
+    .empty-container {
+        height: calc(100vh - 40px);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
