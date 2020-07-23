@@ -27,6 +27,7 @@ class Movies extends Component {
         const {
             movies,
             error,
+            isLoading,
             movieDetails,
             fetchMovies,
             resetMoviesError,
@@ -46,6 +47,7 @@ class Movies extends Component {
                             enterButton="Search"
                             size="large"
                             onSearch={fetchMovies}
+                            loading={isLoading}
                         />
                     </div>
                     <div className="result">
@@ -76,7 +78,8 @@ class Movies extends Component {
 const mapStateToProps = (state) => ({
     movies: state.movie.movies,
     movieDetails: state.movie.movieDetails,
-    error: state.movie.error
+    error: state.movie.error,
+    isLoading: state.movie.isLoading
 })
 
 const mapDispatchToProps = {
