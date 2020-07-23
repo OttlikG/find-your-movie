@@ -28,13 +28,15 @@ export default function MovieCard(props) {
         fetchDetails(movieId)
     }
 
+    const img = <img alt={imageId} src={movieUrl} />
+
     return (
         <>
             <Col sm={12} md={8} lg={4}>
                 <div className="card-wrapper" onClick={loadDetails}>
                     <Card
                         hoverable
-                        cover={<img alt={imageId} src={movieUrl} />}
+                        cover={img}
                     >
                         <Meta title={title} description={description} />
                     </Card>
@@ -42,7 +44,7 @@ export default function MovieCard(props) {
             </Col>
 
             { detailsPageIsOpen && <Modal>
-                <DetailsPage details={details} onClose={setDetailsPageIsOpen} />
+                <DetailsPage details={details} onClose={setDetailsPageIsOpen} img={img} />
             </Modal> }
         </>
     )
