@@ -7,7 +7,7 @@ import Routes from './routes'
 
 export default class Root extends React.PureComponent {
   render() {
-    const { store, history } = this.props
+    const { store } = this.props
 
     return (
         <Provider store={store}>
